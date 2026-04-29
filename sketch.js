@@ -1,7 +1,17 @@
 //global variables
 let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [];
+let secretWords = ["math",
+                   "computer science" ,
+                   "you can't handle the truth",
+                   "with great power comes great responsibility",
+                   "may the force be with you"]
 
 //my function---------------------------------------------
+function setSecretWord(){
+  let randomNumber = Math.floor(Math.random()*5);
+  secretWord = secretWords[randomNumber];
+  print(secretWord)
+}//end secretWord
 function staticDesign(){
   rect(5,5,250,125)
   push()
@@ -25,6 +35,7 @@ function designInput(){
 //p5js function-----------------------------------------
 function setup() {
   createCanvas(400, 400);
+  setSecretWord()
   designButtons();
   designInput();
   
