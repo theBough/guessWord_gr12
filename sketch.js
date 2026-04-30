@@ -7,6 +7,23 @@ let secretWords = ["math",
                    "may the force be with you"]
 
 //my function---------------------------------------------
+function makeBlanks(){
+  for(let i = 0 ; i < secretWord.length ; i++){
+    if((
+      (secretWord.charCodeAt(i) > 64) &&
+      (secretWord.charCodeAt(i) < 91)
+      ) ||
+       ((secretWord.charCodeAt(i) > 96) &&
+      (secretWord.charCodeAt(i) < 123))
+       ){
+      //we have a letter
+      hiddenWord += "-"
+    }else{
+      //this is a non letter
+      hiddenWord += secretWord.charAt(i)
+    }
+  }
+}
 function setSecretWord(){
   let randomNumber = Math.floor(Math.random()*5);
   secretWord = secretWords[randomNumber];
@@ -18,7 +35,11 @@ function staticDesign(){
   fill("red")
   rect(15,10,220,50)
   pop();
+  push()
+  textSize(30)
   text("Guess the word",50,25)
+  text(hiddenWord,50,300)
+  pop()
 }
 function designButtons(){
   guessButton = createButton("guess letter");
@@ -35,7 +56,10 @@ function designInput(){
 //p5js function-----------------------------------------
 function setup() {
   createCanvas(400, 400);
-  setSecretWord()
+  setSecretWord();
+  
+  hiddenWord = "";
+  makeBlanks();
   designButtons();
   designInput();
   
