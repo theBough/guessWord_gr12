@@ -8,6 +8,7 @@ let secretWords = ["math",
 
 //my function---------------------------------------------
 function isLetter(thisChar){
+  thisChar = thisChar.charCodeAt(thisChar);
   if((
       (thisChar > 64) &&
       (thisChar < 91)
@@ -24,7 +25,11 @@ function isLetter(thisChar){
 }
 function makeBlanks(){
   for(let i = 0 ; i < secretWord.length ; i++){
-    
+    if(isLetter(secretWord.charAt(i))){
+      hiddenWord += "-";
+    }else{
+      hiddenWord += secretWord.charAt(i);
+    }
   }
 }
 function setSecretWord(){
