@@ -7,21 +7,24 @@ let secretWords = ["math",
                    "may the force be with you"]
 
 //my function---------------------------------------------
-function makeBlanks(){
-  for(let i = 0 ; i < secretWord.length ; i++){
-    if((
-      (secretWord.charCodeAt(i) > 64) &&
-      (secretWord.charCodeAt(i) < 91)
+function isLetter(thisChar){
+  if((
+      (thisChar > 64) &&
+      (thisChar < 91)
       ) ||
-       ((secretWord.charCodeAt(i) > 96) &&
-      (secretWord.charCodeAt(i) < 123))
+       ((thisChar > 96) &&
+      (thisChar < 123))
        ){
       //we have a letter
-      hiddenWord += "-"
+      return true
     }else{
       //this is a non letter
-      hiddenWord += secretWord.charAt(i)
+      return false
     }
+}
+function makeBlanks(){
+  for(let i = 0 ; i < secretWord.length ; i++){
+    
   }
 }
 function setSecretWord(){
