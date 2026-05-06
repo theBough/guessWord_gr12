@@ -1,5 +1,5 @@
 //global variables
-let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [];
+let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [], lettersGuessed;
 let secretWords = ["math",
                    "computer science" ,
                    "you can't handle the truth",
@@ -7,6 +7,18 @@ let secretWords = ["math",
                    "may the force be with you"]
 
 //my function---------------------------------------------
+function clickGuessButton(){
+  //local variable that gets the letter in the inputbox.
+  let theirGuess = myInput.value();
+  
+  if(!isLetter(theirGuess)){
+    //Not a letter
+    print("Please enter a letter.")
+    return 0;
+  }
+  //add their guess to the list of letters guessed.
+  
+}
 function isLetter(thisChar){
   thisChar = thisChar.charCodeAt(thisChar);
   if((
@@ -48,10 +60,12 @@ function staticDesign(){
   text("Guess the word",50,25)
   text(hiddenWord,50,300)
   pop()
+  text("Letters Guessed: " + lettersGuessed,20 , 250)
 }
 function designButtons(){
   guessButton = createButton("guess letter");
   guessButton.position(50,100)
+  guessButton.mousePressed(clickGuessButton);
   
   solveButton = createButton("solve");
   solveButton.position(150,100)
@@ -70,6 +84,7 @@ function setup() {
   makeBlanks();
   designButtons();
   designInput();
+  lettersGuessed = "";
   
 }
 function draw() {
