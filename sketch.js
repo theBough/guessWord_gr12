@@ -17,6 +17,16 @@ function clickGuessButton(){
     return 0;
   }
   //add their guess to the list of letters guessed.
+  lettersGuessed += theirGuess +", ";
+  if(secretWord.indexOf(theirGuess) > -1){
+    //This guessed correctly.
+    let position = secretWord.indexOf(theirGuess);
+    //changing the string into an array of characters.
+    let editHiddenWord = hiddenWord.split("")
+    editHiddenWord[position] = theirGuess;
+    hiddenWord = editHiddenWord.join("")
+    
+  }
   
 }
 function isLetter(thisChar){
