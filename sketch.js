@@ -13,7 +13,7 @@ function clickGuessButton(){
   
   if(!isLetter(theirGuess)){
     //Not a letter
-    print("Please enter a letter.")
+    myInput.value("Sorry please enter a letter")
     return 0;
   }
   //add their guess to the list of letters guessed.
@@ -31,6 +31,7 @@ function clickGuessButton(){
 }
 function isLetter(thisChar){
   thisChar = thisChar.charCodeAt(thisChar);
+  print(thisChar)
   if((
       (thisChar > 64) &&
       (thisChar < 91)
@@ -95,6 +96,7 @@ function setup() {
   designButtons();
   designInput();
   lettersGuessed = "";
+  myInput.value("hi")
   
 }
 function draw() {
