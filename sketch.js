@@ -1,5 +1,5 @@
 //global variables
-let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [], lettersGuessed;
+let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [], lettersGuessed,wrong;
 let secretWords = ["math",
                    "computer science" ,
                    "you can't handle the truth",
@@ -33,6 +33,8 @@ function clickGuessButton(){
     editHiddenWord[position] = theirGuess;
     hiddenWord = editHiddenWord.join("")
     
+  }else{
+    wrong += 1;
   }
   
 }
@@ -78,7 +80,7 @@ function staticDesign(){
   text(hiddenWord,50,300)
   pop()
   text("Letters Guessed: " + lettersGuessed,20 , 250);
-  image(pictures[0],200,200,200,15)
+  image(pictures[wrong],200,200,200,15)
 }
 function designButtons(){
   guessButton = createButton("guess letter");
@@ -96,9 +98,11 @@ function designInput(){
 //p5js function-----------------------------------------
 function setup() {
   createCanvas(400, 400);
+  wrong = 0;
   setSecretWord();
   loadPictures();
   hiddenWord = "";
+  
   makeBlanks();
   designButtons();
   designInput();
