@@ -7,6 +7,11 @@ let secretWords = ["math",
                    "may the force be with you"]
 
 //my function---------------------------------------------
+function loadPictures(){
+  for(let  i =1 ; i<11 ; i++){
+    pictures.push(loadImage("pictures/pic" + i + ".png"));
+  }//end loop
+}
 function clickGuessButton(){
   //local variable that gets the letter in the inputbox.
   let theirGuess = myInput.value();
@@ -16,6 +21,8 @@ function clickGuessButton(){
     myInput.value("Sorry please enter a letter")
     return 0;
   }
+  theirGuess = theirGuess.toLowerCase();
+  secretWord = secretWord.toLowerCase();
   //add their guess to the list of letters guessed.
   lettersGuessed += theirGuess +", ";
   if(secretWord.indexOf(theirGuess) > -1){
@@ -31,7 +38,7 @@ function clickGuessButton(){
 }
 function isLetter(thisChar){
   thisChar = thisChar.charCodeAt(thisChar);
-  print(thisChar)
+ 
   if((
       (thisChar > 64) &&
       (thisChar < 91)
@@ -58,7 +65,6 @@ function makeBlanks(){
 function setSecretWord(){
   let randomNumber = Math.floor(Math.random()*5);
   secretWord = secretWords[randomNumber];
-  print(secretWord)
 }//end secretWord
 function staticDesign(){
   rect(5,5,250,125)
@@ -71,7 +77,8 @@ function staticDesign(){
   text("Guess the word",50,25)
   text(hiddenWord,50,300)
   pop()
-  text("Letters Guessed: " + lettersGuessed,20 , 250)
+  text("Letters Guessed: " + lettersGuessed,20 , 250);
+  image(pictures[0],200,200,200,15)
 }
 function designButtons(){
   guessButton = createButton("guess letter");
@@ -90,7 +97,7 @@ function designInput(){
 function setup() {
   createCanvas(400, 400);
   setSecretWord();
-  
+  loadPictures();
   hiddenWord = "";
   makeBlanks();
   designButtons();
