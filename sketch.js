@@ -15,6 +15,11 @@ function loadPictures(){
 function clickGuessButton(){
   //local variable that gets the letter in the inputbox.
   let theirGuess = myInput.value();
+   if(wrong  > 8){
+      //They have no guesses left
+     myInput.value("GAMEOVER,you lost!");
+     return 0;
+    }
   if(theirGuess.length >1){
     //they have guessed more than one letter.
     myInput.value("enter one letter at a time.")
@@ -25,6 +30,7 @@ function clickGuessButton(){
     myInput.value("Sorry please enter a letter")
     return 0;
   }
+  
   theirGuess = theirGuess.toLowerCase();
   secretWord = secretWord.toLowerCase();
   //add their guess to the list of letters guessed.
