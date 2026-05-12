@@ -35,12 +35,20 @@ function clickGuessButton(){
   secretWord = secretWord.toLowerCase();
   //add their guess to the list of letters guessed.
   lettersGuessed += theirGuess +", ";
+  
   if(secretWord.indexOf(theirGuess) > -1){
-    //This guessed correctly.
-    let position = secretWord.indexOf(theirGuess);
+    let positions = [];
+    for(let i =0  ; i<secretWord.length; i++){
+      
+      if(secretWord[i] == theirGuess){
+        positions.push(i);
+      }
+    }
     //changing the string into an array of characters.
     let editHiddenWord = hiddenWord.split("")
-    editHiddenWord[position] = theirGuess;
+    for(let i =0 ; i < positions.length ; i++ ){
+      editHiddenWord[positions[i]] = theirGuess;
+    }
     hiddenWord = editHiddenWord.join("")
     
   }else{
@@ -77,6 +85,7 @@ function makeBlanks(){
 function setSecretWord(){
   let randomNumber = Math.floor(Math.random()*5);
   secretWord = secretWords[randomNumber];
+  print(secretWord)
 }//end secretWord
 function staticDesign(){
   rect(5,5,250,125)
