@@ -15,7 +15,11 @@ function loadPictures(){
 function clickGuessButton(){
   //local variable that gets the letter in the inputbox.
   let theirGuess = myInput.value();
-  
+  if(theirGuess.length >1){
+    //they have guessed more than one letter.
+    myInput.value("enter one letter at a time.")
+    return 0;
+  }
   if(!isLetter(theirGuess)){
     //Not a letter
     myInput.value("Sorry please enter a letter")
