@@ -1,5 +1,5 @@
 //global variables
-let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [], lettersGuessed,wrong;
+let myInput, guessButton, solveButton, myImage, secretWord, hiddenWord, pictures = [], lettersGuessed,wrong,isWin;
 let secretWords = ["math",
                    "computer science" ,
                    "you can't handle the truth",
@@ -7,6 +7,25 @@ let secretWords = ["math",
                    "may the force be with you"]
 
 //my function---------------------------------------------
+function clickSolve(){
+  let theirGuess = myInput.value();
+  if(isWin){
+    return 0 ;
+  }
+  secretWord = secretWord.toLowerCase();
+  theirGuess = theirGuess.toLowerCase();
+  if(secretWord == theirGuess){
+    myInput.value("YOU WIN!!!!!!!!!!");
+    isWin = true;
+    hiddenWord = secretWord;
+    return 0 ;
+  }else{
+    myInput.value("You lost!!");
+    wrong =9;
+    isWin = true;
+    return 0 ;
+  }
+}
 function loadPictures(){
   for(let  i =1 ; i<11 ; i++){
     pictures.push(loadImage("pictures/pic" + i + ".png"));
@@ -15,6 +34,10 @@ function loadPictures(){
 function clickGuessButton(){
   //local variable that gets the letter in the inputbox.
   let theirGuess = myInput.value();
+  if(isWin){
+    //they already won
+    return 0;
+  }
    if(wrong  > 8){
       //They have no guesses left
      myInput.value("GAMEOVER,you lost!");
@@ -108,6 +131,7 @@ function designButtons(){
   
   solveButton = createButton("solve");
   solveButton.position(150,100)
+  solveButton.mousePressed(clickSolve)
 }
 function designInput(){
   myInput = createInput();
@@ -126,7 +150,8 @@ function setup() {
   designButtons();
   designInput();
   lettersGuessed = "";
-  myInput.value("hi")
+  myInput.value("hi");
+  isWin = false;
   
 }
 function draw() {
